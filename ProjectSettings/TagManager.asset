@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - disappearItem
+  - appearItem
   layers:
   - Default
   - TransparentFX
@@ -41,4 +43,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGroud
+    uniqueID: 1369955639
+    locked: 0
+  - name: GrayBackGround
+    uniqueID: 3331877779
+    locked: 0
+  - name: Item
+    uniqueID: 2647025411
+    locked: 0
+  - name: Player
+    uniqueID: 274967595
+    locked: 0
+  - name: lantern
+    uniqueID: 3024670505
     locked: 0
