@@ -31,43 +31,43 @@ public class LanternController : MonoBehaviour
     }
 
     //被拿起
-    public void PickUp(bool isUsing)
+    public void PickUp()
     {
         isUsing = true;
     }
     //被放下
     public void PutDown()
     {
-        isUsing = true;
+        isUsing = false;
         //提灯旋转90度
         transform.Rotate(0, 0, 90);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    //碰到消失物体
-    //    if(collision.gameObject.tag == "disappearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = false;
-    //    }
-    //    //碰到出现物体
-    //    if(collision.gameObject.tag == "appearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = true;
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //碰到消失物体
+        //if (collision.gameObject.tag == "disappearItem")
+        //{
+        //    collision.GetComponent<SpriteRenderer>().enabled = false;
+        //}
+        //碰到出现物体
+        if (collision.gameObject.tag == "appearItem")
+        {
+            collision.GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    //离开消失物体
-    //    if(collision.gameObject.tag == "disappearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = true;
-    //    }
-    //    //离开出现物体
-    //    if(collision.gameObject.tag == "appearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = false;
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ////离开消失物体
+        //if (collision.gameObject.tag == "disappearItem")
+        //{
+        //    collision.GetComponent<SpriteRenderer>().enabled = true;
+        //}
+        //离开出现物体
+        if (collision.gameObject.tag == "appearItem")
+        {
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 }
