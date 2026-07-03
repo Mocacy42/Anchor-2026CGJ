@@ -13,9 +13,9 @@ public class LanternController : MonoBehaviour
     //检测物体是否被持有
     [SerializeField] private bool isUsing = false;
 
-    [Header("抛出速度设置")]
-    [SerializeField] private float HorizontalSpeed;
-    [SerializeField] private float VerticalSpeed;
+    //[Header("抛出速度设置")]
+    //[SerializeField] private float HorizontalSpeed;
+    //[SerializeField] private float VerticalSpeed;
 
     private void Start()
     {
