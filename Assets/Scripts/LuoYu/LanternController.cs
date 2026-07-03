@@ -13,6 +13,10 @@ public class LanternController : MonoBehaviour
     //检测物体是否被持有
     [SerializeField] private bool isUsing = false;
 
+    [Header("抛出速度设置")]
+    [SerializeField] private float HorizontalSpeed;
+    [SerializeField] private float VerticalSpeed;
+
     private void Start()
     {
         if(instance == null)
@@ -39,8 +43,6 @@ public class LanternController : MonoBehaviour
     public void PutDown()
     {
         isUsing = false;
-        //提灯旋转90度
-        transform.Rotate(0, 0, 90);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
