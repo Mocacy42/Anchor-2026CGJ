@@ -41,6 +41,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "INTERACT",
+                    "type": "Button",
+                    "id": "6579d71b-3994-4ca9-8ef8-f48cf9b61f6d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -179,7 +188,7 @@
                 {
                     "name": "",
                     "id": "f6debd9b-23b7-4a8a-a76c-ff2776c32b93",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -206,6 +215,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TELEPORT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0d6ae58-567f-4aa2-9300-a5f20657c522",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "INTERACT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

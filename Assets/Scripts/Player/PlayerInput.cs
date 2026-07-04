@@ -127,6 +127,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""INTERACT"",
+                    ""type"": ""Button"",
+                    ""id"": ""6579d71b-3994-4ca9-8ef8-f48cf9b61f6d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -265,7 +274,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f6debd9b-23b7-4a8a-a76c-ff2776c32b93"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -294,6 +303,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""TELEPORT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0d6ae58-567f-4aa2-9300-a5f20657c522"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""INTERACT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -306,6 +326,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_JUMP = m_Player.FindAction("JUMP", throwIfNotFound: true);
         m_Player_PickDrop = m_Player.FindAction("PickDrop", throwIfNotFound: true);
         m_Player_TELEPORT = m_Player.FindAction("TELEPORT", throwIfNotFound: true);
+        m_Player_INTERACT = m_Player.FindAction("INTERACT", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -390,6 +411,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_JUMP;
     private readonly InputAction m_Player_PickDrop;
     private readonly InputAction m_Player_TELEPORT;
+    private readonly InputAction m_Player_INTERACT;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -417,6 +439,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/TELEPORT".
         /// </summary>
         public InputAction @TELEPORT => m_Wrapper.m_Player_TELEPORT;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/INTERACT".
+        /// </summary>
+        public InputAction @INTERACT => m_Wrapper.m_Player_INTERACT;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -455,6 +481,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @TELEPORT.started += instance.OnTELEPORT;
             @TELEPORT.performed += instance.OnTELEPORT;
             @TELEPORT.canceled += instance.OnTELEPORT;
+            @INTERACT.started += instance.OnINTERACT;
+            @INTERACT.performed += instance.OnINTERACT;
+            @INTERACT.canceled += instance.OnINTERACT;
         }
 
         /// <summary>
@@ -478,6 +507,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @TELEPORT.started -= instance.OnTELEPORT;
             @TELEPORT.performed -= instance.OnTELEPORT;
             @TELEPORT.canceled -= instance.OnTELEPORT;
+            @INTERACT.started -= instance.OnINTERACT;
+            @INTERACT.performed -= instance.OnINTERACT;
+            @INTERACT.canceled -= instance.OnINTERACT;
         }
 
         /// <summary>
@@ -546,5 +578,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTELEPORT(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "INTERACT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnINTERACT(InputAction.CallbackContext context);
     }
 }
