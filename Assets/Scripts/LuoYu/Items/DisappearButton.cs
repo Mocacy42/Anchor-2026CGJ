@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class DisappearButton : DisappearItem,IInteractive
 {
-    //¿ª¹Øµ±Ç°×´Ì¬
+    //ï¿½ï¿½ï¿½Øµï¿½Ç°×´Ì¬
     public bool isOpen = false;
-    //¶ÔÓ¦Æ½Ì¨ÁÐ±í
+    //ï¿½ï¿½Ó¦Æ½Ì¨ï¿½Ð±ï¿½
     [SerializeField] private List<Object> platforms = new List<Object>();
 
     public override void EffectAppear() { }
 
     public override void EffectDisappear() { }
 
-    //½»»¥Ð§¹û
+    //ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
     public void InteractiveEffect()
     {
-        //¸Ä±ä¿ª¹Ø×´Ì¬
+        //ï¿½Ä±ä¿ªï¿½ï¿½×´Ì¬
         isOpen = !isOpen;
         
         if(isOpen)
         {
-            //¸Ä±ä¶ÔÓ¦Æ½Ì¨×´Ì¬
+            //ï¿½Ä±ï¿½ï¿½Ó¦Æ½Ì¨×´Ì¬
             foreach (var platform in platforms)
             {
                 if(platform is IPlatform _platform)

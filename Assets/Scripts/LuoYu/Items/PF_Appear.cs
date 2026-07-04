@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PF_Appear : AppearItem,IPlatform
 {
-    //Æ½Ì¨¿ª¹Ø×´Ì¬
+    //Æ½Ì¨ï¿½ï¿½ï¿½ï¿½×´Ì¬
     [SerializeField] private bool isOpen = false;
 
-    //¿ªÆô×´Ì¬ÇÐ»»
+    //ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Ð»ï¿½
     public void ChangeOpenEffect()
     {
         isOpen = true;
         gameObject.SetActive(false);
     }
-    //¹Ø±Õ×´Ì¬ÇÐ»»
+    //ï¿½Ø±ï¿½×´Ì¬ï¿½Ð»ï¿½
     public void ChangeCloseEffect()
     {
         isOpen = false;
