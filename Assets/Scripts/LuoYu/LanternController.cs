@@ -13,7 +13,11 @@ public class LanternController : MonoBehaviour
     //��������Ƿ񱻳���
     [SerializeField] private bool isUsing = false;
 
-    private void Awake()
+    //[Header("�׳��ٶ�����")]
+    //[SerializeField] private float HorizontalSpeed;
+    //[SerializeField] private float VerticalSpeed;
+
+    private void Start()
     {
         if(instance == null)
         {
@@ -38,36 +42,34 @@ public class LanternController : MonoBehaviour
     //������
     public void PutDown()
     {
-        isUsing = true;
-        //�����ת90��
-        transform.Rotate(0, 0, 90);
+        isUsing = false;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    //������ʧ����
-    //    if(collision.gameObject.tag == "disappearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = false;
-    //    }
-    //    //������������
-    //    if(collision.gameObject.tag == "appearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = true;
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //������ʧ����
+        //if (collision.gameObject.tag == "disappearItem")
+        //{
+        //    collision.GetComponent<SpriteRenderer>().enabled = false;
+        //}
+        //������������
+        if (collision.gameObject.tag == "appearItem")
+        {
+            collision.GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    //�뿪��ʧ����
-    //    if(collision.gameObject.tag == "disappearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = true;
-    //    }
-    //    //�뿪��������
-    //    if(collision.gameObject.tag == "appearItem")
-    //    {
-    //        collision.GetComponent<SpriteRenderer>().enabled = false;
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ////�뿪��ʧ����
+        //if (collision.gameObject.tag == "disappearItem")
+        //{
+        //    collision.GetComponent<SpriteRenderer>().enabled = true;
+        //}
+        //�뿪��������
+        if (collision.gameObject.tag == "appearItem")
+        {
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - disappearItem
   - appearItem
+  - Lantern
   layers:
   - Default
   - TransparentFX
