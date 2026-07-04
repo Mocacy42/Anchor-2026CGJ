@@ -14,10 +14,12 @@ public class PF_Fan : MonoBehaviour,IPlatform
     [SerializeField] private float _verticalDamp = 0.2f;
     [SerializeField] private ParticleSystem _ps;
     [SerializeField] private ParticleSystem.EmissionModule _emission ;
+    [SerializeField] private Animator _anim;
     void Awake()
     {
         if(_coll == null) TryGetComponent<Collider2D>(out _coll);
         if(_ps == null) TryGetComponent<ParticleSystem>(out _ps);
+        if(_anim == null) TryGetComponent<Animator>(out _anim);
         _emission = _ps.emission;
     }
 
@@ -60,12 +62,14 @@ public class PF_Fan : MonoBehaviour,IPlatform
         }
         if(_coll.enabled)
         {
-            //if(!_ps.isPlaying) _ps.Play();
+            _anim.SetBool("IsFanning",true);
             _emission.rateOverTime = 5;
         }
         else
-            //_ps.Pause();
-             _emission.rateOverTime = 0;
+        {
+            _anim.SetBool("IsFanning",false);
+            _emission.rateOverTime = 0;
+        }
     }
 
     public void ChangeOpenEffect()

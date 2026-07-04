@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GoalTrigger : MonoBehaviour
 {
+
+    [SerializeField] private Animator _anim;
     public static GoalTrigger Instance;
     void Awake()
     {
@@ -15,6 +17,8 @@ public class GoalTrigger : MonoBehaviour
         {
             Destroy(this);
         }
+
+        if(_anim == null) TryGetComponent(out _anim);
     }
 
     
@@ -26,6 +30,7 @@ public class GoalTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             GetGoal = true;
+            
         }
     }
 
@@ -40,11 +45,13 @@ public class GoalTrigger : MonoBehaviour
         {
             isFinishing = true;
             StartCoroutine(IELevelfinish());
+
         }
     }
     // 到达终点
     IEnumerator IELevelfinish()
     {
+        _anim.SetBool("OpenGate",true);
         yield return null;
         GetGoal = false;
     }

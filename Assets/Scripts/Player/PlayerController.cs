@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 1.0f;
     [SerializeField] private bool _isJumpPressed;
     [SerializeField] private bool _isJumping = false;
+
+    [Header("Anim")]
+    [SerializeField] private bool _isWalking = false;
+    [SerializeField] private Animator _anim;
+
     
   
 
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour
         if(_rb == null)  gameObject.TryGetComponent<Rigidbody2D>(out _rb);
         if(_coll == null)  gameObject.TryGetComponent<CapsuleCollider2D>(out _coll);
         if(_anchor == null) gameObject.TryGetComponent<AnchorAbility>(out _anchor);
+        if(_anim == null) gameObject.TryGetComponent(out _anim);
     }
     private void OnEnable() 
     {
@@ -59,6 +65,13 @@ public class PlayerController : MonoBehaviour
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         transform.localScale = new Vector3( math.abs(transform.localScale.x) * (mouseWorld.x > transform.position.x ? 1 : -1),
             transform.localScale.y , transform.localScale.z);
+        
+        if(math.abs(_movedir.x) < 0.0001f) _isWalking = false;
+        else _isWalking = true;
+        
+        _anim.SetBool("IsWalking",_isWalking);
+
+        
     }
     // 移动逻辑
     private void Move()

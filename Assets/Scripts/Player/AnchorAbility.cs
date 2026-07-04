@@ -86,7 +86,10 @@ public class AnchorAbility : MonoBehaviour
         if(_teleportTween == null) _teleportTween = _rb.transform.DOMove(targetPos, 0.3f);
         isTeleportPressed = false;
         yield return _teleportTween.WaitForCompletion();
+        
         PickUp();
+        isPicking = true;
+        
         _teleportTween = null;
         _rb.simulated = true;
         isTeleporting = false;

@@ -8,15 +8,17 @@ public class InteractiveItem : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private AnchorAbility _anchorAB;
     [SerializeField] private bool _canInteract = false;
-
+    [SerializeField] private Animator _anim;
     void Awake()
     {
         if(_IInteractive == null) TryGetComponent<IInteractive>(out _IInteractive);
+        if(_anim == null) TryGetComponent<Animator>(out _anim);
     }
     // 实际作用
     public void InteractiveEffect()
     {
         _IInteractive?.InteractiveEffect();
+        _anim.SetBool("SwitchOn",!_anim.GetBool("SwitchOn"));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 2059213839575939201}
   - component: {fileID: 4371936330204193897}
   - component: {fileID: 4900932206352259601}
+  - component: {fileID: 2821186352882471285}
   m_Layer: 0
   m_Name: PortalLeft
   m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1955388985416969002
 Transform:
   m_ObjectHideFlags: 0
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -1647941885
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.34276712, g: 0.6254254, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8388e3fd415934d4ea5f8f9e9537acd6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5194445, y: 2.0444446}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -146,6 +147,27 @@ MonoBehaviour:
   otherPortal: {fileID: 7778155059972934315}
   playerController: {fileID: 0}
   _anchorAB: {fileID: 0}
+--- !u!95 &2821186352882471285
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275219102948777333}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9630a00cb8e203439e8ebc76530f314, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5112648616132342543
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,13 +180,14 @@ GameObject:
   - component: {fileID: 2624600342611854866}
   - component: {fileID: 6825382158622452729}
   - component: {fileID: 7778155059972934315}
+  - component: {fileID: 6223175822076365849}
   m_Layer: 0
   m_Name: PortalRight
   m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5292211468168714279
 Transform:
   m_ObjectHideFlags: 0
@@ -221,8 +244,8 @@ SpriteRenderer:
   m_SortingLayerID: -1647941885
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8930817, g: 0.24995048, b: 0.24995048, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8388e3fd415934d4ea5f8f9e9537acd6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,7 +291,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5194445, y: 2.0444446}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -292,6 +315,27 @@ MonoBehaviour:
   otherPortal: {fileID: 4900932206352259601}
   playerController: {fileID: 0}
   _anchorAB: {fileID: 0}
+--- !u!95 &6223175822076365849
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112648616132342543}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4ad97dd3d0b57e459c7a5d161de5f6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7280573577867200655
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,8 +349,9 @@ GameObject:
   - component: {fileID: 1310872084704623181}
   - component: {fileID: 5820474308925341334}
   - component: {fileID: 7715330337991181024}
+  - component: {fileID: 5800413660067674299}
   m_Layer: 0
-  m_Name: PortalButton
+  m_Name: Portal_Blue
   m_TagString: appearItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,7 +415,7 @@ SpriteRenderer:
   m_SortingLayerID: -1647941885
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 573bcc478184c3447b8ae3361685667e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -417,7 +462,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.68125, y: 1.934375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -438,6 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80dfd37913d41241b594f9ecfcf6750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  _anchorAB: {fileID: 0}
+  _canInteract: 0
 --- !u!114 &7715330337991181024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,3 +501,24 @@ MonoBehaviour:
   portals:
   - {fileID: 4900932206352259601}
   - {fileID: 7778155059972934315}
+--- !u!95 &5800413660067674299
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280573577867200655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e604a8d9545a24c4db316acf5be71166, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
