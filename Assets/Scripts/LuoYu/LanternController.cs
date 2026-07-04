@@ -47,13 +47,17 @@ public class LanternController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.layer == 3)
+        {
+            collision.GetComponentInParent<Collider2D>().isTrigger = !collision.GetComponentInParent<Collider2D>().isTrigger;
+        }
         //������ʧ����
         if (collision.gameObject.tag == "disappearItem")
         {
             //物体消失效果
-            if(collision.GetComponent<InteractiveItem>())collision.GetComponent<DisappearItem>().EffectDisappear();
+            if (collision.GetComponent<DisappearItem>()) collision.GetComponent<DisappearItem>().EffectDisappear();
             //关闭刚体碰撞
-            collision.GetComponent<IPlatform>().SetIsTrigger(true);
+            collision.GetComponent<Collider2D>().isTrigger = true;
             //关闭物体交互
             if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = false;
         }
@@ -63,31 +67,35 @@ public class LanternController : MonoBehaviour
             //开启物体交互
             if(collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = true;
             //开启刚体碰撞
-            collision.GetComponent<IPlatform>().SetIsTrigger(false);
+            collision.GetComponent<Collider2D>().isTrigger = false;
             //物体出现效果
-            collision.GetComponent<AppearItem>().EffectAppear();
+            if (collision.GetComponent<AppearItem>()) collision.GetComponent<AppearItem>().EffectAppear();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.layer == 3)
+        {
+            collision.GetComponentInParent<Collider2D>().isTrigger = !collision.GetComponentInParent<Collider2D>().isTrigger;
+        }
         ////�뿪��ʧ����
         if (collision.gameObject.tag == "disappearItem")
         {
             //开启物体交互
             if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = true;
             //开启刚体碰撞
-            collision.GetComponent<IPlatform>().SetIsTrigger(false);
+            collision.GetComponent<Collider2D>().isTrigger = false;
             //物体出现效果
-            collision.GetComponent<DisappearItem>().EffectAppear();
+            if (collision.GetComponent<DisappearItem>()) collision.GetComponent<DisappearItem>().EffectAppear();
         }
         //�뿪��������
         if (collision.gameObject.tag == "appearItem")
         {
             //物体消失效果
-            collision.GetComponent<AppearItem>().EffectDisappear();
+            if (collision.GetComponent<AppearItem>()) collision.GetComponent<AppearItem>().EffectDisappear();
             //关闭刚体碰撞
-            collision.GetComponent<IPlatform>().SetIsTrigger(true);
+            collision.GetComponent<Collider2D>().isTrigger = true;
             //关闭物体交互
             if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = false;
         }

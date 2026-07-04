@@ -7,16 +7,6 @@ public class PF_Appear : AppearItem,IPlatform
     //平台开关状态
     [SerializeField] private bool isOpen = false;
 
-    //判断是否为触发器
-    [SerializeField] public bool isTrigger;
-
-    private void FixedUpdate()
-    {
-        if (isTrigger)
-        {
-            GetComponent<Collider2D>().isTrigger = isTrigger;
-        }
-    }
     //开启状态切换
     public void ChangeOpenEffect()
     {
@@ -38,10 +28,5 @@ public class PF_Appear : AppearItem,IPlatform
     public override void EffectDisappear()
     {
         
-    }
-
-    void IPlatform.SetIsTrigger(bool _isTrigger)
-    {
-        isTrigger = _isTrigger;
     }
 }

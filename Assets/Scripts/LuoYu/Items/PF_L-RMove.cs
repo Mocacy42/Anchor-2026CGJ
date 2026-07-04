@@ -17,16 +17,6 @@ public class PF_LeftToRightMove : MonoBehaviour, IPlatform
 
     [SerializeField] private float direction = 1f; //移动方向 1：向上,-1：向下
 
-    //判断是否为触发器
-    [SerializeField] public bool isTrigger;
-
-    private void FixedUpdate()
-    {
-        if (isTrigger)
-        {
-            GetComponent<Collider2D>().isTrigger = isTrigger;
-        }
-    }
     //开启状态转换
     public void ChangeOpenEffect()
     {
@@ -38,7 +28,7 @@ public class PF_LeftToRightMove : MonoBehaviour, IPlatform
         isOpen = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //开启状态时持续移动
         if(isOpen)
@@ -52,8 +42,4 @@ public class PF_LeftToRightMove : MonoBehaviour, IPlatform
         }
     }
 
-    void IPlatform.SetIsTrigger(bool _isTrigger)
-    {
-        isTrigger = _isTrigger;
-    }
 }

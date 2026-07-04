@@ -22,18 +22,6 @@ public class PF_FourDirectionmove : DisappearItem,IPlatform
     
     [SerializeField] private float direction = 1f; //移动方向 1：向上/右,-1：向下/左
 
-
-    //判断是否为触发器
-    [SerializeField] public bool isTrigger;
-
-    private void FixedUpdate()
-    {
-        if (isTrigger)
-        {
-            GetComponent<Collider2D>().isTrigger = isTrigger;
-        }
-    }
-
     public void ChangeOpenEffect()
     {
         isOpen = true;
@@ -43,7 +31,7 @@ public class PF_FourDirectionmove : DisappearItem,IPlatform
         isOpen = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //开启状态时持续移动
         if (isOpen)
@@ -59,10 +47,6 @@ public class PF_FourDirectionmove : DisappearItem,IPlatform
         {
             direction *= -1;
         }
-    }
-    void IPlatform.SetIsTrigger(bool _isTrigger)
-    {
-        isTrigger = _isTrigger;
     }
     public override void EffectDisappear()
     {
