@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 56584478}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0.74, z: 0}
+  m_LocalPosition: {x: 2.84, y: -0.03, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -269,29 +269,14 @@ GameObject:
   - component: {fileID: 322114020}
   - component: {fileID: 322114019}
   - component: {fileID: 322114021}
-  - component: {fileID: 322114018}
+  - component: {fileID: 322114022}
   m_Layer: 0
-  m_Name: Circle
-  m_TagString: Untagged
+  m_Name: AppearButton
+  m_TagString: appearItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &322114018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322114017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6873974593e0ef4cae23c5fa753f5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpen: 0
-  platforms:
-  - {fileID: 327495233}
 --- !u!212 &322114019
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -342,7 +327,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!4 &322114020
 Transform:
@@ -371,6 +356,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80dfd37913d41241b594f9ecfcf6750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &322114022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322114017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71aadda1bd0a33f4396a54fe6fe05c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  platforms:
+  - {fileID: 327495233}
 --- !u!1 &327495233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1537,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
-  isUsing: 0
 --- !u!50 &1196136955
 Rigidbody2D:
   serializedVersion: 4
