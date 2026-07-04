@@ -7,34 +7,43 @@ public class InteractiveItem : MonoBehaviour
     [SerializeField] private IInteractive _IInteractive;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private AnchorAbility _anchorAB;
+    [SerializeField] private bool _canInteract = false;
 
+    void Awake()
+    {
+        if(_IInteractive == null) TryGetComponent<IInteractive>(out _IInteractive);
+    }
     // 实际作用
     public void InteractiveEffect()
     {
         _IInteractive?.InteractiveEffect();
-        if(_IInteractive == null) Debug.Log("IInteractive failed");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.CompareTag("Player"))
         {
             if(playerController == null) playerController = collision.GetComponent<PlayerController>();
             if(_anchorAB == null) _anchorAB = playerController.GetComponentInChildren<AnchorAbility>();
+            _canInteract = true;
         }
     }
 
-    // 修改为 stay
-    private void OnTriggerStay2D(Collider2D collision)
+    void Update()
     {
-        if(collision.gameObject.tag == "Player")
+        if(_canInteract && _anchorAB.IsInteractPressed)
         {
-            if(_anchorAB.IsInteractPressed)
-            {
-                _anchorAB.IsInteractPressed = false;
-                InteractiveEffect();
-            }
-            
+            InteractiveEffect();
+            _anchorAB.IsInteractPressed = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            _anchorAB.IsInteractPressed = false;
+            _canInteract = false;
         }
     }
 }

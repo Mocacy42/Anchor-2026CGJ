@@ -10,56 +10,11 @@ public class LanternController : MonoBehaviour
     //��ɫ��������
     [SerializeField] private PlayerController playerController;
 
-
-    //[Header("�׳��ٶ�����")]
-    //[SerializeField] private float HorizontalSpeed;
-    //[SerializeField] private float VerticalSpeed;
-
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
-        }
-    }
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //������ʧ����
-        //if (collision.gameObject.tag == "disappearItem")
-        //{
-        //    collision.GetComponent<SpriteRenderer>().enabled = false;
-        //}
-        //������������
-        if (collision.gameObject.tag == "appearItem")
-        {
-            //开启物体可见
-            collision.GetComponent<SpriteRenderer>().enabled = true;
-            //开启物体交互
-            collision.GetComponent<AppearItem>().enabled = true;
-            //物体出现效果
-            collision.GetComponent<AppearItem>().EffectAppear();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        ////�뿪��ʧ����
-        //if (collision.gameObject.tag == "disappearItem")
-        //{
-        //    collision.GetComponent<SpriteRenderer>().enabled = true;
-        //}
-        //�뿪��������
-        if (collision.gameObject.tag == "appearItem")
-        {
-            //关闭物体可见
-            collision.GetComponent<SpriteRenderer>().enabled = false;
-            //物体消失效果
-            collision.GetComponent<AppearItem>().EffectDisappear();
-            //关闭物体交互
-            collision.GetComponent<AppearItem>().enabled = false;
         }
     }
 }
