@@ -7,8 +7,7 @@ public class AppearButton : AppearItem, IInteractive
     //开关当前状态
     public bool isOpen = false;
     //对应平台列表
-    [SerializeField] private List<IPlatform> platforms = new List<IPlatform>();
-
+    [SerializeField] private List<Object> platforms = new List<Object>();
 
     public override void EffectAppear() { }
 
@@ -22,20 +21,25 @@ public class AppearButton : AppearItem, IInteractive
 
         if (isOpen)
         {
+            Debug.Log("打开开关");
             //改变对应平台状态
-            foreach (var platform in platforms)
+            foreach (GameObject platform in platforms)
             {
-                if (platform is IPlatform _platform)
+                IPlatform temp = platform.GetComponent<IPlatform>();
+                Debug.Log($"遍历开关, 对象类型: {platform.GetType().Name}");
+                if (temp is IPlatform _platform)
                 {
+                    Debug.Log("切换开关");
                     _platform.ChangeOpenEffect();
                 }
             }
         }
         else
         {
-            foreach (var platform in platforms)
+            foreach (GameObject platform in platforms)
             {
-                if (platform is IPlatform _platform)
+                IPlatform temp = platform.GetComponent<IPlatform>();
+                if (temp is IPlatform _platform)
                 {
                     _platform.ChangeCloseEffect();
                 }
