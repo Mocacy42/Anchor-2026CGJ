@@ -63,7 +63,7 @@ public class PF_Fan : MonoBehaviour,IPlatform
         if(_coll.enabled)
         {
             _anim.SetBool("IsFanning",true);
-            _emission.rateOverTime = 5;
+            _emission.rateOverTime = 20;
         }
         else
         {

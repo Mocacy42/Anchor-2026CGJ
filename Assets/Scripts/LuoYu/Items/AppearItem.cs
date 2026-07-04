@@ -4,13 +4,13 @@ public abstract class AppearItem : MonoBehaviour
 {
     void Start()
     {
-        //默认可见
+        //默锟较可硷拷
         GetComponent<SpriteRenderer>().enabled = true;
-        //默认禁用互动
-        if(GetComponent<InteractiveItem>()) GetComponent<InteractiveItem>().enabled = false;
+        //默锟较斤拷锟矫伙拷锟斤拷
+        //if(GetComponent<InteractiveItem>()) GetComponent<InteractiveItem>().enabled = false;
     }
-    //抽象方法，出现时效果
+    //锟斤拷锟襟方凤拷锟斤拷锟斤拷锟斤拷时效锟斤拷
     public abstract void EffectAppear();
-    //抽象方法，消失时效果
+    //锟斤拷锟襟方凤拷锟斤拷锟斤拷失时效锟斤拷
     public abstract void EffectDisappear();
 }

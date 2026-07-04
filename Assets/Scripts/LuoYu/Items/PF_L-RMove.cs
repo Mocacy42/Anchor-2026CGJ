@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PF_LeftToRightMove : MonoBehaviour, IPlatform
+public class PF_LeftToRightMove :DisappearItem ,IPlatform
 {
-    //Æ½Ì¨¿ª¹Ø×´Ì¬
+    //Æ½Ì¨ï¿½ï¿½ï¿½ï¿½×´Ì¬
     [SerializeField] private bool isOpen = false;
-    //Æ½Ì¨ÒÆ¶¯ËÙ¶È
+    //Æ½Ì¨ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
     [SerializeField] private float moveSpeed = 1f;
 
-    [Header("Æ½Ì¨×î´ó/Ð¡ÒÆ¶¯¸ß¶È")]
-    //×î´ó¸ß¶È
+    [Header("Æ½Ì¨ï¿½ï¿½ï¿½/Ð¡ï¿½Æ¶ï¿½ï¿½ß¶ï¿½")]
+    //ï¿½ï¿½ï¿½ß¶ï¿½
     [SerializeField] private float maxHeight;
-    //×îÐ¡¸ß¶È
+    //ï¿½ï¿½Ð¡ï¿½ß¶ï¿½
     [SerializeField] private float minHeight;
 
-    [SerializeField] private float direction = 1f; //ÒÆ¶¯·½Ïò 1£ºÏòÉÏ,-1£ºÏòÏÂ
+    [SerializeField] private float direction = 1f; //ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,-1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    //¿ªÆô×´Ì¬×ª»»
+    [SerializeField] private Collider2D _realColl;
+
+
+    //ï¿½ï¿½ï¿½ï¿½×´Ì¬×ªï¿½ï¿½
     public void ChangeOpenEffect()
     {
         isOpen = true;
     }
-    //¹Ø±Õ×´Ì¬×ª»»
+    //ï¿½Ø±ï¿½×´Ì¬×ªï¿½ï¿½
     public void ChangeCloseEffect()
     {
         isOpen = false;
@@ -30,16 +33,25 @@ public class PF_LeftToRightMove : MonoBehaviour, IPlatform
 
     private void FixedUpdate()
     {
-        //¿ªÆô×´Ì¬Ê±³ÖÐøÒÆ¶¯
+        //ï¿½ï¿½ï¿½ï¿½×´Ì¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
         if(isOpen)
         {
             transform.Translate(Vector3.up * moveSpeed * direction * Time.deltaTime);
         }
-        //µ½´ï×î´ó/Ð¡¸ß¶È±ä»»·½Ïò
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/Ð¡ï¿½ß¶È±ä»»ï¿½ï¿½ï¿½ï¿½
         if(transform.position.y < minHeight || transform.position.y > maxHeight)
         {
             direction *= -1;
         }
     }
 
+    public override void EffectAppear()
+    {
+        _realColl.enabled = true;
+    }
+
+    public override void EffectDisappear()
+    {
+       _realColl.enabled = false;
+    }
 }

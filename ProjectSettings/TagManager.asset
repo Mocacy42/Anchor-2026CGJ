@@ -20,7 +20,7 @@ TagManager:
   - UI
   - Player
   - Lantern
-  - 
+  - TriggeerCheck
   - 
   - 
   - 
@@ -62,6 +62,9 @@ TagManager:
     locked: 0
   - name: lantern
     uniqueID: 3024670505
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 1829990411
     locked: 0
   - name: UI
     uniqueID: 3761689331

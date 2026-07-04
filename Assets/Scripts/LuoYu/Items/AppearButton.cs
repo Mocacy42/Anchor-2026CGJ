@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class AppearButton : AppearItem, IInteractive
 {
-    //¿ª¹Øµ±Ç°×´Ì¬
+    //ï¿½ï¿½ï¿½Øµï¿½Ç°×´Ì¬
     public bool isOpen = false;
-    //¶ÔÓ¦Æ½Ì¨ÁÐ±í
+    //ï¿½ï¿½Ó¦Æ½Ì¨ï¿½Ð±ï¿½
     [SerializeField] private List<Object> platforms = new List<Object>();
+    [SerializeField] private Collider2D _trigger;
+    public override void EffectAppear() { _trigger.enabled = true;}
 
-    public override void EffectAppear() { }
+    public override void EffectDisappear() { _trigger.enabled = false;}
 
-    public override void EffectDisappear() { }
-
-    //½»»¥Ð§¹û
+    //ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
     public void InteractiveEffect()
     {
-        //¸Ä±ä¿ª¹Ø×´Ì¬
+        //ï¿½Ä±ä¿ªï¿½ï¿½×´Ì¬
         isOpen = !isOpen;
 
         if (isOpen)
         {
-            Debug.Log("´ò¿ª¿ª¹Ø");
-            //¸Ä±ä¶ÔÓ¦Æ½Ì¨×´Ì¬
+
+            //ï¿½Ä±ï¿½ï¿½Ó¦Æ½Ì¨×´Ì¬
             foreach (GameObject platform in platforms)
             {
                 IPlatform temp = platform.GetComponent<IPlatform>();
-                Debug.Log($"±éÀú¿ª¹Ø, ¶ÔÏóÀàÐÍ: {platform.GetType().Name}");
+
                 if (temp is IPlatform _platform)
                 {
-                    Debug.Log("ÇÐ»»¿ª¹Ø");
                     _platform.ChangeOpenEffect();
                 }
             }

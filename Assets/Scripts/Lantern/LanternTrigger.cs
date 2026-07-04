@@ -15,11 +15,16 @@ public class LanternTrigger : MonoBehaviour
         //������������
         if (collision.gameObject.tag == "appearItem")
         {
-
-            //开启物体交互
-            collision.GetComponent<AppearItem>().enabled = true;
             //物体出现效果
-            collision.GetComponent<AppearItem>().EffectAppear();
+            collision.GetComponent<AppearItem>()?.EffectAppear();
+
+            
+        }
+        else if(collision.CompareTag("disappearItem"))
+        {
+            var item = collision.GetComponent<DisappearItem>();
+            item?.EffectDisappear();
+            
         }
     }
 
@@ -35,9 +40,12 @@ public class LanternTrigger : MonoBehaviour
         {
 
             //物体消失效果
-            collision.GetComponent<AppearItem>().EffectDisappear();
-            //关闭物体交互
-            collision.GetComponent<AppearItem>().enabled = false;
+            collision.GetComponent<AppearItem>()?.EffectDisappear();
+        }
+        else if(collision.CompareTag("disappearItem"))
+        {
+            var item = collision.GetComponent<DisappearItem>();
+            item?.EffectAppear();
         }
     }
 }
