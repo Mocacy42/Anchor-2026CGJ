@@ -9,6 +9,10 @@ public class InteractiveItem : MonoBehaviour
     [SerializeField] private AnchorAbility _anchorAB;
     [SerializeField] private bool _canInteract = false;
 
+    void Awake()
+    {
+        if(_IInteractive == null) TryGetComponent<IInteractive>(out _IInteractive);
+    }
     // 实际作用
     public void InteractiveEffect()
     {
