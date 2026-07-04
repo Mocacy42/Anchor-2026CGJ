@@ -94,20 +94,34 @@ public class PlayerController : MonoBehaviour
     // 检测地面tag，清除jump标记
     private void CheckGround()
     {
-        Vector2 pos = new Vector2(transform.position.x, transform.position.y - 1f);
-        var colls = Physics2D.OverlapCircleAll(pos,0.1f);
 
-        if(colls.Count() > 1)
-        {        
-            foreach(var item in colls)
+        RaycastHit2D[] hitinfo1 = Physics2D.RaycastAll(transform.position - new Vector3(0.2f, 1f, 0f) ,Vector2.down ,  0.1f);
+        RaycastHit2D[] hitinfo2 = Physics2D.RaycastAll(transform.position - new Vector3( - 0.2f, 1f, 0f) ,Vector2.down,  0.1f);
+
+        bool hitGround1 = false;
+        foreach (var hit in hitinfo1)
+        {
+            if (!hit.collider.isTrigger)
             {
-                if(item.CompareTag("Ground") == true && _rb.velocity.y <= 0)
-                {
-                    _isJumping = false;
-                }
+                hitGround1 = true;
+                break;
             }
         }
-        if(_isJumping == false) _currJumpCount = 0;
+        bool hitGround2 = false;
+        foreach (var hit in hitinfo2)
+        {
+            if (!hit.collider.isTrigger)
+            {
+                hitGround2 = true;
+                break;
+            }
+        }
+
+        if((hitGround1 || hitGround2) && _rb.velocity.y <= 0)
+        {
+            _isJumping = false;
+            _currJumpCount = 0;
+        } 
     }
 
 
