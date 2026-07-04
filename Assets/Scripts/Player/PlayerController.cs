@@ -9,7 +9,7 @@ using System.Linq;
 [RequireComponent(typeof(Rigidbody2D)),RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInput _input;
+
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private CapsuleCollider2D _coll;
     [SerializeField] private AnchorAbility _anchor;
@@ -29,11 +29,10 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        if(_input == null) _input = new PlayerInput();
-        _input.Player.MOVE.performed += ctx => _movedir = ctx.ReadValue<Vector2>();
-        _input.Player.MOVE.canceled += ctx => _movedir = Vector2.zero;
-        _input.Player.JUMP.started += ctx => _isJumpPressed = true;
-        _input.Player.JUMP.canceled += ctx => _isJumpPressed = false;
+        InputInstance.Instance.PInput.Player.MOVE.performed += ctx => _movedir = ctx.ReadValue<Vector2>();
+        InputInstance.Instance.PInput.Player.MOVE.canceled += ctx => _movedir = Vector2.zero;
+        InputInstance.Instance.PInput.Player.JUMP.started += ctx => _isJumpPressed = true;
+        InputInstance.Instance.PInput.Player.JUMP.canceled += ctx => _isJumpPressed = false;
 
         if(_rb == null)  gameObject.TryGetComponent<Rigidbody2D>(out _rb);
         if(_coll == null)  gameObject.TryGetComponent<CapsuleCollider2D>(out _coll);
@@ -41,11 +40,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable() 
     {
-        _input.Enable();
+        InputInstance.Instance.PInput.Enable();
     }
     private void OnDisable() 
     {
-        _input.Disable();    
+        InputInstance.Instance.PInput.Disable();    
     }
 
 
@@ -54,6 +53,9 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
+        Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        transform.localScale = new Vector3( math.abs(transform.localScale.x) * (mouseWorld.x > transform.position.x ? 1 : -1),
+            transform.localScale.y , transform.localScale.z);
     }
     // 移动逻辑
     private void Move()
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
     // 检测地面tag，清除jump标记
     private void CheckGround()
     {
-        Vector2 pos = new Vector2(transform.position.x, transform.position.y - 0.5f);
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y - 1f);
         var colls = Physics2D.OverlapCircleAll(pos,0.1f);
 
         if(colls.Count() > 1)
@@ -105,8 +107,6 @@ public class PlayerController : MonoBehaviour
         if(_isJumping == false) _currJumpCount = 0;
     }
 
-
-    
 
     // 播放死亡动画
     public void OnPlayerDie()
