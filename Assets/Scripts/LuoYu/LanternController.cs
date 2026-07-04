@@ -10,14 +10,12 @@ public class LanternController : MonoBehaviour
     //��ɫ��������
     [SerializeField] private PlayerController playerController;
 
-    //��������Ƿ񱻳���
-    [SerializeField] private bool isUsing = false;
 
     //[Header("�׳��ٶ�����")]
     //[SerializeField] private float HorizontalSpeed;
     //[SerializeField] private float VerticalSpeed;
 
-    private void Start()
+    private void Awake()
     {
         if(instance == null)
         {
@@ -25,79 +23,43 @@ public class LanternController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if(isUsing)
-        {
-            //��������У���������ƶ�
-            transform.position = playerController.transform.position;
-        }
-    }
 
-    //������
-    public void PickUp()
-    {
-        isUsing = true;
-    }
-    //������
-    public void PutDown()
-    {
-        isUsing = false;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 3)
-        {
-            collision.GetComponentInParent<Collider2D>().isTrigger = !collision.GetComponentInParent<Collider2D>().isTrigger;
-        }
         //������ʧ����
-        if (collision.gameObject.tag == "disappearItem")
-        {
-            //物体消失效果
-            if (collision.GetComponent<DisappearItem>()) collision.GetComponent<DisappearItem>().EffectDisappear();
-            //关闭刚体碰撞
-            collision.GetComponent<Collider2D>().isTrigger = true;
-            //关闭物体交互
-            if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = false;
-        }
+        //if (collision.gameObject.tag == "disappearItem")
+        //{
+        //    collision.GetComponent<SpriteRenderer>().enabled = false;
+        //}
         //������������
         if (collision.gameObject.tag == "appearItem")
         {
+            //开启物体可见
+            collision.GetComponent<SpriteRenderer>().enabled = true;
             //开启物体交互
-            if(collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = true;
-            //开启刚体碰撞
-            collision.GetComponent<Collider2D>().isTrigger = false;
+            collision.GetComponent<AppearItem>().enabled = true;
             //物体出现效果
-            if (collision.GetComponent<AppearItem>()) collision.GetComponent<AppearItem>().EffectAppear();
+            collision.GetComponent<AppearItem>().EffectAppear();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3)
-        {
-            collision.GetComponentInParent<Collider2D>().isTrigger = !collision.GetComponentInParent<Collider2D>().isTrigger;
-        }
         ////�뿪��ʧ����
-        if (collision.gameObject.tag == "disappearItem")
-        {
-            //开启物体交互
-            if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = true;
-            //开启刚体碰撞
-            collision.GetComponent<Collider2D>().isTrigger = false;
-            //物体出现效果
-            if (collision.GetComponent<DisappearItem>()) collision.GetComponent<DisappearItem>().EffectAppear();
-        }
+        //if (collision.gameObject.tag == "disappearItem")
+        //{
+        //    collision.GetComponent<SpriteRenderer>().enabled = true;
+        //}
         //�뿪��������
         if (collision.gameObject.tag == "appearItem")
         {
+            //关闭物体可见
+            collision.GetComponent<SpriteRenderer>().enabled = false;
             //物体消失效果
-            if (collision.GetComponent<AppearItem>()) collision.GetComponent<AppearItem>().EffectDisappear();
-            //关闭刚体碰撞
-            collision.GetComponent<Collider2D>().isTrigger = true;
+            collision.GetComponent<AppearItem>().EffectDisappear();
             //关闭物体交互
-            if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = false;
+            collision.GetComponent<AppearItem>().enabled = false;
         }
     }
 }

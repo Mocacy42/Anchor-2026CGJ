@@ -10,14 +10,17 @@ public class AnchorAbility : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Rigidbody2D _anchorTargetRB;
     [SerializeField] private HingeJoint2D _anchorJoint;
+    [SerializeField] private Collider2D _anchorColl;
     [SerializeField] private LineRenderer _trajectoryLine;
     [Header("PickDrop Logic")]
-    [SerializeField] private bool canPickUp = false;
-    [SerializeField] private bool isPicking = false;
-    [SerializeField] private bool isPickDropPressed = false;
+    [SerializeField] private bool canPickUp = false; // 是否处于触发器中
+    [SerializeField] private bool isPicking = false; // 是否已经装备锚点
+    [SerializeField] private bool isPickDropPressed = false; 
     [SerializeField] private bool isPickDropHold = false;
     [SerializeField] private bool isPickDropUp = false;
-    [SerializeField] private bool isTeleportPressed = false;
+    [SerializeField] private bool isTeleportPressed = false; // 传送交互
+    public bool IsInteractPressed {get; set;}
+    [SerializeField] private bool isInteractPressed;
     [Header("Anchor Position")]
     [SerializeField] private int lastDir = 1;
     [SerializeField] private int currDir = 1;
@@ -33,6 +36,7 @@ public class AnchorAbility : MonoBehaviour
         
         if(_rb == null)  _rb = gameObject.GetComponentInParent<Rigidbody2D>();
         if(_anchorJoint == null) LanternController.instance.gameObject.TryGetComponent<HingeJoint2D>(out _anchorJoint);
+        if(_anchorColl == null) LanternController.instance.gameObject.TryGetComponent<Collider2D>(out _anchorColl);
         if(_trajectoryLine == null) gameObject.TryGetComponent<LineRenderer>(out _trajectoryLine);
         if(_anchorTargetRB == null) _anchorTargetRB = gameObject.GetComponentInChildren<Rigidbody2D>();
         
@@ -43,6 +47,9 @@ public class AnchorAbility : MonoBehaviour
 
         InputInstance.Instance.PInput.Player.TELEPORT.started += ctx => isTeleportPressed = true;
         InputInstance.Instance.PInput.Player.TELEPORT.canceled += ctx => isTeleportPressed = false;
+
+        InputInstance.Instance.PInput.Player.INTERACT.performed += ctx => {IsInteractPressed = true;isInteractPressed = true;};
+        InputInstance.Instance.PInput.Player.INTERACT.canceled += ctx => {IsInteractPressed = false;isInteractPressed = false;};
     }
 
     // 传送至锚点，后续可以修改为协程控制
@@ -86,6 +93,7 @@ public class AnchorAbility : MonoBehaviour
     private void DropAnchor()
     {
         _anchorJoint.enabled = false;
+        _anchorColl.enabled = true;
     }
     // 将锚点扔出
     private void ThorwAnchor()
@@ -103,6 +111,7 @@ public class AnchorAbility : MonoBehaviour
 
         // throw 
         LanternController.instance.GetComponent<Rigidbody2D>().AddForce(tangentDir * _thorwForce, ForceMode2D.Impulse);
+        _anchorColl.enabled = true;
 
     }
     // 将锚点拾起
@@ -112,6 +121,8 @@ public class AnchorAbility : MonoBehaviour
         Vector3 facedir = new Vector3( _rb.transform.localScale.x >= 0 ? 1: -1,  1, 1);
         LanternController.instance.gameObject.transform.position = _anchorTargetRB.transform.position ;
         _anchorJoint.enabled = true;
+        _anchorColl.enabled = false;
+
     }
 
     // 渲染贝塞尔曲线
@@ -161,6 +172,8 @@ public class AnchorAbility : MonoBehaviour
         {
             canPickUp = true;
         }
+
+
     }
 
     void OnTriggerExit2D(Collider2D collision)
