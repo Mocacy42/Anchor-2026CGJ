@@ -48,17 +48,22 @@ public class LanternController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //������ʧ����
-        //if (collision.gameObject.tag == "disappearItem")
-        //{
-        //    collision.GetComponent<SpriteRenderer>().enabled = false;
-        //}
+        if (collision.gameObject.tag == "disappearItem")
+        {
+            //物体消失效果
+            if(collision.GetComponent<InteractiveItem>())collision.GetComponent<DisappearItem>().EffectDisappear();
+            //关闭刚体碰撞
+            collision.GetComponent<IPlatform>().SetIsTrigger(true);
+            //关闭物体交互
+            if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = false;
+        }
         //������������
         if (collision.gameObject.tag == "appearItem")
         {
-            //开启物体可见
-            collision.GetComponent<SpriteRenderer>().enabled = true;
             //开启物体交互
-            collision.GetComponent<AppearItem>().enabled = true;
+            if(collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = true;
+            //开启刚体碰撞
+            collision.GetComponent<IPlatform>().SetIsTrigger(false);
             //物体出现效果
             collision.GetComponent<AppearItem>().EffectAppear();
         }
@@ -67,19 +72,24 @@ public class LanternController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         ////�뿪��ʧ����
-        //if (collision.gameObject.tag == "disappearItem")
-        //{
-        //    collision.GetComponent<SpriteRenderer>().enabled = true;
-        //}
+        if (collision.gameObject.tag == "disappearItem")
+        {
+            //开启物体交互
+            if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = true;
+            //开启刚体碰撞
+            collision.GetComponent<IPlatform>().SetIsTrigger(false);
+            //物体出现效果
+            collision.GetComponent<DisappearItem>().EffectAppear();
+        }
         //�뿪��������
         if (collision.gameObject.tag == "appearItem")
         {
-            //关闭物体可见
-            collision.GetComponent<SpriteRenderer>().enabled = false;
             //物体消失效果
             collision.GetComponent<AppearItem>().EffectDisappear();
+            //关闭刚体碰撞
+            collision.GetComponent<IPlatform>().SetIsTrigger(true);
             //关闭物体交互
-            collision.GetComponent<AppearItem>().enabled = false;
+            if (collision.GetComponent<InteractiveItem>()) collision.GetComponent<InteractiveItem>().enabled = false;
         }
     }
 }
