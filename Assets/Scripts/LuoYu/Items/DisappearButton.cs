@@ -21,15 +21,12 @@ public class DisappearButton : DisappearItem,IInteractive
 
         if (isOpen)
         {
-            Debug.Log("打开开关");
             //改变对应平台状态
             foreach (GameObject platform in platforms)
             {
                 IPlatform temp = platform.GetComponent<IPlatform>();
-                Debug.Log($"遍历开关, 对象类型: {platform.GetType().Name}");
                 if (temp is IPlatform _platform)
                 {
-                    Debug.Log("切换开关");
                     _platform.ChangeOpenEffect();
                 }
             }
