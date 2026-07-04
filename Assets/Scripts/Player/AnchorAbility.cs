@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,9 +19,7 @@ public class AnchorAbility : MonoBehaviour
     [SerializeField] private bool isPickDropPressed = false; 
     [SerializeField] private bool isPickDropHold = false;
     [SerializeField] private bool isPickDropUp = false;
-    [SerializeField] private bool isTeleportPressed = false; // 传送交互
     public bool IsInteractPressed {get; set;}
-    [SerializeField] private bool isInteractPressed;
     [Header("Anchor Position")]
     [SerializeField] private int lastDir = 1;
     [SerializeField] private int currDir = 1;
@@ -30,6 +29,13 @@ public class AnchorAbility : MonoBehaviour
     [SerializeField] private int sampleCount = 10;
     [SerializeField] private int _displayCount = 2;
     [SerializeField] private float _thorwForce = 5.0f;
+    [Header("Teleport")]
+    [SerializeField] private bool isTeleportPressed = false; // 传送交互
+    [SerializeField] private bool isTeleporting = false;
+
+    private Tween _teleportTween;
+    [SerializeField] private bool _isMarking = false;
+
     
     void Awake()
     {
@@ -39,6 +45,7 @@ public class AnchorAbility : MonoBehaviour
         if(_anchorColl == null) LanternController.instance.gameObject.TryGetComponent<Collider2D>(out _anchorColl);
         if(_trajectoryLine == null) gameObject.TryGetComponent<LineRenderer>(out _trajectoryLine);
         if(_anchorTargetRB == null) _anchorTargetRB = gameObject.GetComponentInChildren<Rigidbody2D>();
+     
         
         InputInstance.Instance.PInput.Player.PickDrop.started += ctx => {isPickDropPressed = true; isPickDropHold = false; isPickDropUp = false;};
         InputInstance.Instance.PInput.Player.PickDrop.performed += ctx => {isPickDropHold = true; isPickDropUp = false;};
@@ -48,19 +55,40 @@ public class AnchorAbility : MonoBehaviour
         InputInstance.Instance.PInput.Player.TELEPORT.started += ctx => isTeleportPressed = true;
         InputInstance.Instance.PInput.Player.TELEPORT.canceled += ctx => isTeleportPressed = false;
 
-        InputInstance.Instance.PInput.Player.INTERACT.performed += ctx => {IsInteractPressed = true;isInteractPressed = true;};
-        InputInstance.Instance.PInput.Player.INTERACT.canceled += ctx => {IsInteractPressed = false;isInteractPressed = false;};
+        InputInstance.Instance.PInput.Player.INTERACT.performed += ctx => {IsInteractPressed = true;};
+        InputInstance.Instance.PInput.Player.INTERACT.canceled += ctx => {IsInteractPressed = false;};
+    }
+
+    void Start()
+    {
+        // 初始状态
+        if(isPicking)
+        {
+            PickUp();
+        }
+        
     }
 
     // 传送至锚点，后续可以修改为协程控制
-    public void Teleport(Vector2 targetPos)
+    private void Teleport(Vector2 targetPos)
     {
-        if(isTeleportPressed && isPicking == false)
+        if(isTeleportPressed && isPicking == false && isTeleporting == false)
         {
-            _rb.gameObject.transform.position = targetPos;
-            _rb.velocity = Vector2.zero;
-            isTeleportPressed = false;
+            isTeleporting = true;
+            StartCoroutine(IETeleport(targetPos));
         }
+        
+    }
+    IEnumerator IETeleport(Vector2 targetPos)
+    {
+        _rb.velocity = Vector2.zero;
+        _rb.simulated = false;
+        if(_teleportTween == null) _teleportTween = _rb.transform.DOMove(targetPos, 0.3f);
+        isTeleportPressed = false;
+        yield return _teleportTween.WaitForCompletion();
+        _teleportTween = null;
+        _rb.simulated = true;
+        isTeleporting = false;
     }
 
     // 拾取放下锚点
@@ -101,12 +129,9 @@ public class AnchorAbility : MonoBehaviour
         _anchorJoint.enabled = false;
        
         Vector2 p0 = LanternController.instance.transform.position;
-
         Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 dir = (mouseWorld - (Vector2)p0).normalized;
-
         Vector2 p1 = p0 + dir * _maxThorwDist;
-        Vector2 p2 = new Vector2(p1.x + p1.x - p0.x , p0.y);
         Vector2 tangentDir = BezierHelper.GetStartTangent(p0,p1);
 
         // throw 
@@ -118,7 +143,6 @@ public class AnchorAbility : MonoBehaviour
     private void PickUp()
     {
         LanternController.instance.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        Vector3 facedir = new Vector3( _rb.transform.localScale.x >= 0 ? 1: -1,  1, 1);
         LanternController.instance.gameObject.transform.position = _anchorTargetRB.transform.position ;
         _anchorJoint.enabled = true;
         _anchorColl.enabled = false;
@@ -161,7 +185,10 @@ public class AnchorAbility : MonoBehaviour
             
         }
         lastDir = currDir;
+
+
         Teleport(LanternController.instance.transform.position + Vector3.up);
+        
         DrawBezierLine();
             
     }

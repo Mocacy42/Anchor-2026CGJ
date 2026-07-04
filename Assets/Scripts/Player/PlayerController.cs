@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeedMultiper = 1.0f;
     [SerializeField] private float _maxMoveSpeed = 10f;
     [SerializeField] private float _frictionSpeed = 1.0f;
+
     [Header("Jump")]
     [SerializeField] private int _maxJumpCount = 1;
     [SerializeField] private int _currJumpCount = 0;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isJumpPressed;
     [SerializeField] private bool _isJumping = false;
     
+  
+
 
     void Awake()
     {

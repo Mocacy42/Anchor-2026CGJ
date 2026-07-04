@@ -16,14 +16,20 @@ public class Portal : MonoBehaviour
         playerController.gameObject.transform.position = otherPortal.gameObject.transform.position;
     }
 
-    // 修改为 stay
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             if(playerController == null) playerController = collision.GetComponent<PlayerController>();
             if(_anchorAB == null) _anchorAB = playerController.GetComponentInChildren<AnchorAbility>();
+        }
+    }
 
+    // 修改为 stay
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
             if(_anchorAB.IsInteractPressed)
             {
                 _anchorAB.IsInteractPressed = false;
