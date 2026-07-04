@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SceneTransitionManager : MonoBehaviour
 
     //转场画布引用
     [SerializeField] private Canvas TransitionCanvas;
+    //进度条引用
+    [SerializeField] private Slider slider;
 
     private void Start()
     {
@@ -44,6 +47,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         while(asyncLoad.progress < 0.9f)
         {
+            slider.value = asyncLoad.progress;
             yield return null;
         }
 
