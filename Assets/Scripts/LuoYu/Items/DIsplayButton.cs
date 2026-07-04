@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayButton : MonoBehaviour
+public class DisplayButton : MonoBehaviour,IInteractive
 {
     //开关当前状态
     public bool isOpen = false;
