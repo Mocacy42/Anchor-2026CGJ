@@ -55,7 +55,12 @@ public class LanternController : MonoBehaviour
         //������������
         if (collision.gameObject.tag == "appearItem")
         {
+            //开启物体可见
             collision.GetComponent<SpriteRenderer>().enabled = true;
+            //开启物体交互
+            collision.GetComponent<AppearItem>().enabled = true;
+            //物体出现效果
+            collision.GetComponent<AppearItem>().EffectAppear();
         }
     }
 
@@ -69,7 +74,12 @@ public class LanternController : MonoBehaviour
         //�뿪��������
         if (collision.gameObject.tag == "appearItem")
         {
+            //关闭物体可见
             collision.GetComponent<SpriteRenderer>().enabled = false;
+            //物体消失效果
+            collision.GetComponent<AppearItem>().EffectDisappear();
+            //关闭物体交互
+            collision.GetComponent<AppearItem>().enabled = false;
         }
     }
 }
