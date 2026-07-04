@@ -25,10 +25,12 @@ public class PF_FourDirectionmove : DisappearItem,IPlatform
     public void ChangeOpenEffect()
     {
         isOpen = true;
+        transform.position = new Vector2(maxHP, transform.position.y);
     }
     public void ChangeCloseEffect()
     {
         isOpen = false;
+        transform.position = new Vector2(transform.position.x, maxHeight);
     }
 
     private void FixedUpdate()
