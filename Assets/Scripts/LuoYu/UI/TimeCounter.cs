@@ -8,7 +8,7 @@ public class TimeCounter : MonoBehaviour
     //文本引用
     [SerializeField] private TMP_Text timeCounterText;
     //计时器
-    [SerializeField] private float timeCounter;
+    public float timeCounter;
 
     private void Update()
     {
