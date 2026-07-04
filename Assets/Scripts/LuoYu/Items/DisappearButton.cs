@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisappearButton : DisappearItem
+public class DisappearButton : DisappearItem,IInteractive
 {
     //开关当前状态
     public bool isOpen = false;
