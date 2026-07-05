@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractiveItem : MonoBehaviour
+public class InteractiveItem : DisappearItem
 {
     [SerializeField] private IInteractive _IInteractive;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private AnchorAbility _anchorAB;
     [SerializeField] private bool _canInteract = false;
     [SerializeField] private Animator _anim;
+    [SerializeField] private bool _triggerCanceled = false;
     void Awake()
     {
         if(_IInteractive == null) TryGetComponent<IInteractive>(out _IInteractive);
@@ -33,7 +34,7 @@ public class InteractiveItem : MonoBehaviour
 
     void Update()
     {
-        if(_canInteract && _anchorAB.IsInteractPressed)
+        if(_canInteract && _anchorAB.IsInteractPressed && _triggerCanceled == false)
         {
             InteractiveEffect();
             _anchorAB.IsInteractPressed = false;
@@ -47,5 +48,15 @@ public class InteractiveItem : MonoBehaviour
             _anchorAB.IsInteractPressed = false;
             _canInteract = false;
         }
+    }
+
+    public override void EffectDisappear()
+    {
+        _triggerCanceled = true;
+    }
+
+    public override void EffectAppear()
+    {
+        _triggerCanceled = false;
     }
 }
