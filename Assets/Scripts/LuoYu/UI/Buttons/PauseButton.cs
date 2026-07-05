@@ -7,6 +7,8 @@ public class PauseButton : MonoBehaviour
     [SerializeField] private PassPanelManager passPanelManager;
     public void PutDown()
     {
+        //½ûÓÃÍæ¼ÒÊäÈë
+        InputInstance.Instance.PInput.Player.Disable();
         Time.timeScale = 0f;
         passPanelManager.PauseLevel();
     }
