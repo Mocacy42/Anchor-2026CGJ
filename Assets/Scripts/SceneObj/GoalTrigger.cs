@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoalTrigger : MonoBehaviour
 {
-
+    [SerializeField] PassPanelManager passPanelManager;
     [SerializeField] private Animator _anim;
     public static GoalTrigger Instance;
     void Awake()
@@ -30,6 +30,7 @@ public class GoalTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             GetGoal = true;
+            passPanelManager.PassLevel();
         }
     }
 
