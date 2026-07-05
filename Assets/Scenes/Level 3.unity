@@ -1970,7 +1970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 723983766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 723983764}
+        m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
+        m_MethodName: PutDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &723983766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,29 +2488,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815468782}
   m_CullTransparentMesh: 1
---- !u!1 &847316413 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8151922663805353576, guid: bc91e31de908e1441b932359e3abad0a, type: 3}
-  m_PrefabInstance: {fileID: 124261643}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &847316414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847316413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7341704270f21864ab1e9c6f48196775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpen: 0
-  moveSpeed: 1
-  rightEdge: -4.6
-  leftEdge: -6.04
-  direction: 1
-  _realColl: {fileID: 870478909}
 --- !u!1 &847590467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,11 +2783,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &870478909 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6135483023219333897, guid: bc91e31de908e1441b932359e3abad0a, type: 3}
-  m_PrefabInstance: {fileID: 124261643}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &982791165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,6 +3483,10 @@ PrefabInstance:
       propertyPath: platforms.Array.data[0]
       value: 
       objectReference: {fileID: 2032752997}
+    - target: {fileID: 3689044137012021551, guid: abacba2d80914024da40b21038374736, type: 3}
+      propertyPath: m_SortingOrder
+      value: 138
+      objectReference: {fileID: 0}
     - target: {fileID: 5863233774541198756, guid: abacba2d80914024da40b21038374736, type: 3}
       propertyPath: m_Name
       value: Switch-Square
@@ -4880,6 +4868,10 @@ PrefabInstance:
       propertyPath: platforms.Array.data[0]
       value: 
       objectReference: {fileID: 602064208}
+    - target: {fileID: 3689044137012021551, guid: 42cee5ef591b10e42876e03d1b65f3ed, type: 3}
+      propertyPath: m_SortingOrder
+      value: 208
+      objectReference: {fileID: 0}
     - target: {fileID: 5863233774541198756, guid: 42cee5ef591b10e42876e03d1b65f3ed, type: 3}
       propertyPath: m_Name
       value: Switch-Triangle
@@ -5718,6 +5710,6 @@ SceneRoots:
   - {fileID: 1349178276}
   - {fileID: 377897944}
   - {fileID: 81432907}
-  - {fileID: 124261643}
   - {fileID: 2056911456}
   - {fileID: 531233906}
+  - {fileID: 8711838939001051391}
