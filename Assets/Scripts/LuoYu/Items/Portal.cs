@@ -8,7 +8,7 @@ public class Portal : MonoBehaviour
     //�������
     [SerializeField] private PlayerController playerController;
     [SerializeField] private AnchorAbility _anchorAB;
-
+    public bool CanTeleport {get; set;} = false;
     // 传送
     public void InteractiveEffect()
     {
@@ -28,9 +28,9 @@ public class Portal : MonoBehaviour
     // 修改为 stay
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" )
         {
-            if(_anchorAB.IsInteractPressed)
+            if(_anchorAB.IsInteractPressed  && CanTeleport)
             {
                 _anchorAB.IsInteractPressed = false;
                 InteractiveEffect();

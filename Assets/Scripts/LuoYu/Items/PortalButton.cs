@@ -3,23 +3,36 @@ using UnityEngine;
 
 public class PortalButton : AppearItem
 {
-    //传送门引用
+    //锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
     [SerializeField] private List<Portal> portals = new List<Portal>();
+    [SerializeField] private HashSet<Animator> _anims = new HashSet<Animator>();
 
-    //实现抽象方法，出现时效果
+    //实锟街筹拷锟襟方凤拷锟斤拷锟斤拷锟斤拷时效锟斤拷
     public override void EffectAppear()
     {
         foreach(var portal in portals)
         {
-            portal.gameObject.SetActive(true);
+            // portal.gameObject.SetActive(true);
+            _anims.Add(portal.gameObject.GetComponent<Animator>());
+            portal.CanTeleport = true;
+        }
+
+        foreach(var anim in _anims)
+        {
+            anim.SetBool("IsActive", true);
         }
     }
-    //实现抽象方法，消失时效果
+    //实锟街筹拷锟襟方凤拷锟斤拷锟斤拷失时效锟斤拷
     public override void EffectDisappear()
     {
         foreach (var portal in portals)
         {
-            portal.gameObject.SetActive(false);
+            //portal.gameObject.SetActive(false);
+            portal.CanTeleport = false;
+        }
+        foreach(var anim in _anims)
+        {
+            anim.SetBool("IsActive", false);
         }
     }
 }
