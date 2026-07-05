@@ -4309,6 +4309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passPanel: {fileID: 1140722607}
+  passText: {fileID: 1834753441}
   passTime: {fileID: 496273783}
   timeCounter: {fileID: 2048451250}
   passButton: {fileID: 2094058528}
@@ -4323,7 +4324,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1359851434}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4779,6 +4780,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 300659598385279647, guid: 19c979605486077409e03a8298b35655, type: 3}
+      propertyPath: passPanelManager
+      value: 
+      objectReference: {fileID: 2048693846}
     - target: {fileID: 8048960917055717708, guid: 19c979605486077409e03a8298b35655, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.64

@@ -3791,7 +3791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passPanel: {fileID: 1402948062}
-  passText: {fileID: 0}
+  passText: {fileID: 1887880158}
   passTime: {fileID: 1467387615}
   timeCounter: {fileID: 813441380}
   passButton: {fileID: 128949754}
@@ -4150,6 +4150,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 300659598385279647, guid: 19c979605486077409e03a8298b35655, type: 3}
+      propertyPath: passPanelManager
+      value: 
+      objectReference: {fileID: 2094060949}
     - target: {fileID: 8048960917055717708, guid: 19c979605486077409e03a8298b35655, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.64
