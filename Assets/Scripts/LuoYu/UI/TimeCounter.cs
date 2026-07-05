@@ -12,8 +12,8 @@ public class TimeCounter : MonoBehaviour
 
     private void Update()
     {
-        timeCounter -= Time.deltaTime;
+        timeCounter += Time.deltaTime;
 
-        timeCounterText.text = $"{timeCounter / 60}£º{timeCounter % 60}";
+        timeCounterText.text = $"{(int)timeCounter / 60}£º{(int)timeCounter % 60}";
     }
 }

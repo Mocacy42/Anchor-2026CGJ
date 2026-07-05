@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 45183609}
   - component: {fileID: 45183608}
   - component: {fileID: 45183607}
+  - component: {fileID: 45183610}
   m_Layer: 5
   m_Name: YESButton
   m_TagString: Untagged
@@ -203,7 +204,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 45183608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 45183610}
+        m_TargetAssemblyTypeName: QuitLevelButton, Assembly-CSharp
+        m_MethodName: PutDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &45183608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +255,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45183605}
   m_CullTransparentMesh: 1
+--- !u!114 &45183610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45183605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1455f543e382a494a8a13fe546c462c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &202683339
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +390,7 @@ MonoBehaviour:
   passTime: {fileID: 936161586}
   timeCounter: {fileID: 1042038200}
   passButton: {fileID: 1337082995}
+  quitLevelPanel: {fileID: 1166445585}
 --- !u!1 &314137702
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b9b8b60763b34942b741fcdc9fde519, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 990b999f279fb6447ae0448c57b03fa4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -656,6 +682,7 @@ GameObject:
   - component: {fileID: 453480301}
   - component: {fileID: 453480300}
   - component: {fileID: 453480299}
+  - component: {fileID: 453480302}
   m_Layer: 5
   m_Name: ReplayButton
   m_TagString: Untagged
@@ -725,7 +752,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 453480300}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 453480302}
+        m_TargetAssemblyTypeName: ReplayButton, Assembly-CSharp
+        m_MethodName: PutDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &453480300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +785,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e0f78387817b2d4ead5857d1375b020, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b29a7441de09426419f60dffa79bfe3a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -764,6 +803,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453480297}
   m_CullTransparentMesh: 1
+--- !u!114 &453480302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453480297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a227ab910d9324383852e4027f4731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &880240013
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +827,7 @@ GameObject:
   - component: {fileID: 880240017}
   - component: {fileID: 880240016}
   - component: {fileID: 880240015}
+  - component: {fileID: 880240018}
   m_Layer: 5
   m_Name: NOButton
   m_TagString: Untagged
@@ -845,7 +897,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 880240016}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 880240018}
+        m_TargetAssemblyTypeName: DontQuitLevelButton, Assembly-CSharp
+        m_MethodName: PutDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &880240016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +948,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880240013}
   m_CullTransparentMesh: 1
+--- !u!114 &880240018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880240013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c895c5c5e4c1c43a43aa51616c2141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitLevelPanel: {fileID: 1166445585}
 --- !u!1 &936161584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1210,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9dfb6533a9062944bb51101ce8f5e90a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63df864aa67c2694e9ee65767260295f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1461,7 +1538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2e6848823d4647e49beba8cb13f69880, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c875680d20b861a41b7e87368546a1bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1671,7 +1748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b97ca24d06b4720439e63f8ec40f9568, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04230bb56e00809499d5689170fff0cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1718,7 +1795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1372690046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1765,7 +1842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1068c24727783eb4583c20eb6accb680, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee3755c4318a94a4cbdeafe2d926099c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1795,6 +1872,7 @@ GameObject:
   - component: {fileID: 1451728410}
   - component: {fileID: 1451728409}
   - component: {fileID: 1451728408}
+  - component: {fileID: 1451728411}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1885,7 +1963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e704c5912d6f49d47a545fa8d8a9030c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 887d7a2ea3713d047896e927b0e6d79d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1903,6 +1981,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451728406}
   m_CullTransparentMesh: 1
+--- !u!114 &1451728411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451728406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c45a47f478b5f344be854560665149e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passPanelManager: {fileID: 202683344}
 --- !u!1 &1805424338
 GameObject:
   m_ObjectHideFlags: 0
