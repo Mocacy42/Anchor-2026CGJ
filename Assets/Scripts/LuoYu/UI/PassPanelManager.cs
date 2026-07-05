@@ -14,6 +14,8 @@ public class PassPanelManager : MonoBehaviour
     [SerializeField] private TimeCounter timeCounter;
     //下一关卡按钮引用
     [SerializeField] private Button passButton;
+    //退出关卡界面引用
+    [SerializeField] private GameObject quitLevelPanel;
     //通过关卡
     public void PassLevel()
     {
@@ -29,5 +31,14 @@ public class PassPanelManager : MonoBehaviour
         passTime.text = $"{timeCounter.timeCounter / 60}：{timeCounter.timeCounter % 60}";
         //未通关按钮为灰色
         passButton.image.color = Color.gray;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0.0f;
+            quitLevelPanel.SetActive(true);
+        }
     }
 }

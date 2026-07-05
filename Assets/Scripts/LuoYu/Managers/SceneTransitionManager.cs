@@ -13,6 +13,8 @@ public class SceneTransitionManager : MonoBehaviour
     [SerializeField] private Canvas TransitionCanvas;
     //进度条引用
     [SerializeField] private Slider slider;
+    //协程变量，防止重复触发
+    [SerializeField] private Coroutine currentCoroutine;
 
     private void Start()
     {
@@ -29,9 +31,9 @@ public class SceneTransitionManager : MonoBehaviour
     //加载指定场景
     public void LoadScene(string sceneName)
     {
-        if(instance != null)
+        if(instance != null && currentCoroutine == null)
         {
-            StartCoroutine(TransitionRoutine(sceneName));
+            currentCoroutine = StartCoroutine(TransitionRoutine(sceneName));
         }else
         {
             SceneManager.LoadScene(sceneName);
@@ -52,8 +54,6 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         asyncLoad.allowSceneActivation = true;
-
-        yield return null;
 
         TransitionCanvas.gameObject.SetActive(false);
     }
