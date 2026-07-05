@@ -30,7 +30,6 @@ public class GoalTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             GetGoal = true;
-            
         }
     }
 

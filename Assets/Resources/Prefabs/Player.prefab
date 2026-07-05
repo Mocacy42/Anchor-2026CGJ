@@ -382,8 +382,8 @@ MonoBehaviour:
   _anchor: {fileID: 0}
   _movedir: {x: 0, y: 0}
   _moveSpeedMultiper: 50
-  _maxMoveSpeed: 10
-  _frictionSpeed: 8
+  _maxMoveSpeed: 3
+  _frictionSpeed: 10
   _maxJumpCount: 1
   _currJumpCount: 0
   _jumpForce: 11
@@ -423,8 +423,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0.007597208}
+  m_Size: {x: 1, y: 1.5117102}
   m_Direction: 0
 --- !u!50 &2264012412611718837
 Rigidbody2D:
